@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api_learning_words'
+    'api_learning_words',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'drf_ujson.renderers.UJSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'drf_ujson.parsers.UJSONParser',
+    ]
+}
