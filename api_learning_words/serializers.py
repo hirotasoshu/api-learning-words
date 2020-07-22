@@ -6,5 +6,5 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('id', 'name', 'icon')
-        icon = serializers.Field(source='icon.url')
+        icon = serializers.CharField(source='icon.url')
 
