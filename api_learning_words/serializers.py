@@ -8,3 +8,10 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'icon')
         icon = serializers.CharField(source='icon.url')
 
+
+class LevelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Level
+        fields = ('id', 'name', 'code')
+
+
