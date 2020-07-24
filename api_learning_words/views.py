@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ViewSet, GenericViewSet
 from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
+from rest_framework.response import Response
 from .serializers import CategorySerializer, LevelSerializer, WordSerializer, ThemeSerializer
 from .models import *
-from rest_framework.response import Response
+from .permissions import CheckApiKeyAuth
 
 
 class ListViewSet(ListModelMixin, GenericViewSet):
@@ -17,19 +18,24 @@ class RetrieveViewSet(RetrieveModelMixin, GenericViewSet):
 class CategoryViewSet(ListViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [CheckApiKeyAuth]
+
 
 
 class LevelViewSet(ListViewSet):
     queryset = Level.objects.all()
     serializer_class = LevelSerializer
-
+    permission_classes = [CheckApiKeyAuth]
 
 class WordViewSet(RetrieveViewSet):
     queryset = Word.objects.all()
     serializer_class = WordSerializer
+    permission_classes = [CheckApiKeyAuth]
 
 
 class ThemeViewSet(ViewSet):
+    permission_classes = [CheckApiKeyAuth]
+
     def list(self, request):
         queryset = Theme.objects.select_related('category', 'level').prefetch_related('words')
         category = self.request.query_params.get('category', None)
