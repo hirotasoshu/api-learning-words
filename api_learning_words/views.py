@@ -1,18 +1,10 @@
 from django.shortcuts import get_object_or_404
-from rest_framework.viewsets import ViewSet, GenericViewSet
-from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
+from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from .utils.viewsets import ListViewSet, RetrieveViewSet
 from .serializers import CategorySerializer, LevelSerializer, WordSerializer, ThemeSerializer
-from .models import *
 from .permissions import CheckApiKeyAuth
-
-
-class ListViewSet(ListModelMixin, GenericViewSet):
-    pass
-
-
-class RetrieveViewSet(RetrieveModelMixin, GenericViewSet):
-    pass
+from .models import *
 
 
 class CategoryViewSet(ListViewSet):
@@ -21,11 +13,11 @@ class CategoryViewSet(ListViewSet):
     permission_classes = [CheckApiKeyAuth]
 
 
-
 class LevelViewSet(ListViewSet):
     queryset = Level.objects.all()
     serializer_class = LevelSerializer
     permission_classes = [CheckApiKeyAuth]
+
 
 class WordViewSet(RetrieveViewSet):
     queryset = Word.objects.all()
