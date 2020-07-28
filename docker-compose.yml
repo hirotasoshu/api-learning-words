@@ -7,25 +7,17 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env
-    environment:
-      POSTGRES_USER: $POSTGRES_USER
-      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-      POSTGRES_DB: $POSTGRES_DB
-      POSTGRES_HOST: $POSTGRES_HOST
     ports:
       - "${DB_PORT:-5432}:5432"
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     env_file:
       - .env
-    environment:
-      POSTGRES_USER: $POSTGRES_USER
-      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-      POSTGRES_DB: $POSTGRES_DB
-      POSTGRES_HOST: $POSTGRES_HOST
     volumes:
-      - .:/code
+      - ./app:/app
     ports:
       - "${HTTP_PORT:-8000}:8000"
     depends_on:

@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class ApiLearningWordsConfig(AppConfig):
-    name = 'api_learning_words'
+    name = 'learning_words.api_learning_words'
