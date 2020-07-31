@@ -21,11 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'v2f917ps5ta!n@=-c(cd(7u+-y1+qqc_r7bu(llxxu86qv%lz7'
-API_SECRET = '438ae8ec0d7cb3166cb22020aab81d2a'
+SECRET_KEY = ''
+API_SECRET = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -126,9 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/static_files/'
-MEDIA_URL = '/media_files/'
-MEDIA_ROOT = os.path.join (BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 
 STATICFILES_DIRS = [
     '/usr/local/lib/python3.7/site-packages/django/contrib/admin/static',
@@ -141,4 +140,24 @@ REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': [
         'drf_ujson.parsers.UJSONParser',
     ]
+}
+
+## Logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
 }

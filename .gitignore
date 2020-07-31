@@ -85,7 +85,7 @@ target/
 __pycache__/
 local_settings.py
 
-#.env
+.env
 app/db.sqlite3
 # virtualenv
 venv/
@@ -134,4 +134,5 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+app/learning_words/media/
 
