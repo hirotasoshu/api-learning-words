@@ -23,3 +23,7 @@ def categories_url():
 def levels_url():
     return '/api/levels/'
 
+
+@pytest.fixture
+def all_urls(categories_url, levels_url):
+    return [categories_url, levels_url]

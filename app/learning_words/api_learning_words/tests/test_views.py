@@ -1,11 +1,12 @@
 import pytest
 
 
-class TestCategoryViewSet:
+class TestPermission:
     @pytest.mark.django_db
-    def test_without_api_secret(self, api_client, categories_url):
-        response = api_client.get(categories_url)
-        assert response.status_code == 403
+    def test_without_api_secret(self, api_client, all_urls):
+        for url in all_urls:
+            response = api_client.get(url)
+            assert response.status_code == 403
 
     @pytest.mark.django_db
     @pytest.mark.parametrize('secret, status_code', [
@@ -21,10 +22,13 @@ class TestCategoryViewSet:
         '3d_similar_secret',
         'right_secret'
     ])
-    def test_with_api_secret(self, api_client, categories_url, secret, status_code):
-        response = api_client.get(categories_url, HTTP_SECRET=secret)
-        assert response.status_code == status_code
+    def test_with_api_secret(self, api_client, all_urls, secret, status_code):
+        for url in all_urls:
+            response = api_client.get(url, HTTP_SECRET=secret)
+            assert response.status_code == status_code
 
+
+class TestCategoryViewSet:
     @pytest.mark.django_db
     def test_without_content(self, api_client, categories_url):
         response = api_client.get(categories_url, HTTP_SECRET='t3st')
@@ -43,29 +47,6 @@ class TestCategoryViewSet:
 
 class TestLevelViewSet:
     @pytest.mark.django_db
-    def test_without_api_secret(self, api_client, levels_url):
-        response = api_client.get(levels_url)
-        assert response.status_code == 403
-
-    @pytest.mark.django_db
-    @pytest.mark.parametrize('secret, status_code', [
-        ('123', 403),
-        ('TEST', 403),
-        ('test', 403),
-        ('T3ST', 403),
-        ('t3st', 200)
-    ], ids=[
-        'wrong_secret',
-        '1st_similar_secret',
-        '2nd_similar_secret',
-        '3d_similar_secret',
-        'right_secret'
-    ])
-    def test_with_api_secret(self, api_client, levels_url, secret, status_code):
-        response = api_client.get(levels_url, HTTP_SECRET=secret)
-        assert response.status_code == status_code
-
-    @pytest.mark.django_db
     def test_without_content(self, api_client, levels_url):
         response = api_client.get(levels_url, HTTP_SECRET='t3st')
         data = response.json()
@@ -77,7 +58,7 @@ class TestLevelViewSet:
         data = response.json()
         assert len(data) == 2
         assert data[0] == {'id': level.id, 'name': level.name, 'code': level.code}
-        assert data[1] == {'id': other_level.id, 'name': other_level.name, 'code':other_level.code}
+        assert data[1] == {'id': other_level.id, 'name': other_level.name, 'code': other_level.code}
 
 
 
