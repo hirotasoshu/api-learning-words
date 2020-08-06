@@ -1,9 +1,11 @@
 import pytest
 from pytest_factoryboy import register
-from .factories import CategoryFactory
+from .factories import CategoryFactory, LevelFactory
 
-register(CategoryFactory)
+register(CategoryFactory, "category")
 register(CategoryFactory, "other_category")
+register(LevelFactory)
+register(LevelFactory, "other_level")
 
 
 @pytest.fixture
@@ -15,4 +17,9 @@ def api_client():
 @pytest.fixture
 def categories_url():
     return '/api/categories/'
+
+
+@pytest.fixture
+def levels_url():
+    return '/api/levels/'
 
