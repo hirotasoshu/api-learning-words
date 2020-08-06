@@ -8,8 +8,20 @@ STATIC_ROOT = '/static_files/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/media_files/'
 
-SECRET_KEY = os.environ.get('SECRET_KEY', default='super-secret-key')
-API_SECRET = os.environ.get('API_SECRET', default='md5-hash-doubletapp')
+SECRET_KEY = os.environ.get('SECRET_KEY')
+API_SECRET = os.environ.get('API_SECRET')
+
+DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('POSTGRES_HOST'),
+        'PORT': "5432"
+        }
+}
+
 
 ## Logging configuration
 LOGGING = {

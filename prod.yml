@@ -9,6 +9,7 @@ services:
       - .env
     ports:
       - "${DB_PORT:-5432}:5432"
+    restart: always
   web:
     build:
       context: .
@@ -26,6 +27,7 @@ services:
       - "${HTTP_PORT:-8000}:8000"
     depends_on:
       - db
+    restart: always
   nginx:
     #image: nginx
     build:
@@ -38,7 +40,7 @@ services:
       - web
     ports:
       - 8080:80
-
+    restart: always
 
 
 volumes:

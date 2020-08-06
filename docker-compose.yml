@@ -1,27 +1,14 @@
 version: '3.7'
 
 services:
-  db:
-    image: "postgres:11"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - .env
-    ports:
-      - "${DB_PORT:-5432}:5432"
   web:
     build:
       context: .
       dockerfile: docker/dev/web/Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
-    env_file:
-      - .env
     volumes:
       - ./app:/app
     ports:
       - "${HTTP_PORT:-8000}:8000"
-    depends_on:
-      - db
 
-volumes:
-  postgres_data:
+
