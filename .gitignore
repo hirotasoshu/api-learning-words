@@ -135,4 +135,5 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 app/learning_words/media/
+app/learning_words/static/
 

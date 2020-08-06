@@ -10,7 +10,10 @@ WORKDIR /app
 RUN pip install -r requirements/prod.txt
 
 COPY ./docker/prod/web/entrypoint.sh /entrypoint.sh
+COPY ./docker/prod/web/collectstatic_entrypoint.sh /collectstatic_entrypoint.sh
+
 
 RUN chmod +x /entrypoint.sh
+RUN chmod +x /collectstatic_entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
