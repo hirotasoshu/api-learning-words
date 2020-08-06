@@ -1,6 +1,6 @@
 from .base import *
 
-MEDIA_ROOT = os.path.join (BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 't3st'

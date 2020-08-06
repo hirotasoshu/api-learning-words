@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'learning_words.api_learning_words'
+    'learning_words.api_learning_words',
 ]
 
 MIDDLEWARE = [
