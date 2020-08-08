@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  db:
+    env_file:
+      .example.env
+  web:
+    build:
+      context: .
+      dockerfile: docker/ci/web/Dockerfile
