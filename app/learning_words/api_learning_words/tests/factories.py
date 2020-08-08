@@ -32,6 +32,13 @@ class WordFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Word
 
+    name = factory.Faker('word')
+    translation = factory.Faker('word', locale='ru_RU')
+    transcription = 'transcription'
+    example = factory.Faker('sentence', nb_words=4)
+    sound = factory.django.FileField(filename=factory.Sequence(lambda n: f'sound_{n}.png'))
+    theme = factory.SubFactory(ThemeFactory)
+
 
 
 
