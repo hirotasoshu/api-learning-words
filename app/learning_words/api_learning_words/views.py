@@ -37,13 +37,13 @@ class ThemeViewSet(ViewSet):
         if level:
             queryset = queryset.filter(level_id=level)
         serializer = ThemeSerializer(queryset, fields=('id', 'category', 'level', 'name', 'photo'), many=True,
-                                     read_only=True)
+                                     read_only=True, context={'request': request})
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         queryset = Theme.objects.select_related('category', 'level').prefetch_related('words')
         theme = get_object_or_404(queryset, pk=pk)
-        serializer = ThemeSerializer(theme, read_only=True)
+        serializer = ThemeSerializer(theme, read_only=True, context={'request': request})
         return Response(serializer.data)
 
 
