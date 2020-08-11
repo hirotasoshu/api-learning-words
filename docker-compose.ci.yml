@@ -5,3 +5,6 @@ services:
     build:
       context: .
       dockerfile: docker/ci/web/Dockerfile
+    environment:
+       - DJANGO_SETTINGS_MODULE=learning_words.settings.testing
+    command: ["pytest",  "--cov",  "--cov-report=xml"]
