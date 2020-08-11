@@ -1,8 +1,28 @@
+import admin_thumbnails
 from django.contrib import admin
-from .models import Category, Level, Theme, Word
-# Register your models here.
-admin.site.register(Category)
-admin.site.register(Level)
-admin.site.register(Theme)
-admin.site.register(Word)
+from django.contrib.auth.models import Group, User
+from .models import Category, Level, Word, Theme
 
+
+@admin.register(Category)
+@admin_thumbnails.thumbnail('icon')
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Theme)
+@admin_thumbnails.thumbnail('photo')
+class ThemeAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Level)
+
+
+@admin.register(Word)
+class WordAdmin(admin.ModelAdmin):
+    readonly_fields = ['sound_preview']
+
+
+admin.site.unregister(Group)
+admin.site.unregister(User)
