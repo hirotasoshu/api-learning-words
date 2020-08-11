@@ -18,7 +18,7 @@ install:
 
 
 script:
-- docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ci.yml run -e DJANGO_SETTINGS_MODULE=learning_words.settings.testing --no-deps --rm web
+- docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ci.yml run --no-deps --rm web
 
 after_success:
   - codecov
