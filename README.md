@@ -58,7 +58,7 @@ All requests should have 'Secret' header that equals to API_SECRET, otherwise yo
 
 ## List levels
 
-**URL**: `/api/levels`
+**URL**: `/api/levels/`
 
 **METHOD**: `GET`
 
@@ -75,7 +75,7 @@ All requests should have 'Secret' header that equals to API_SECRET, otherwise yo
 
 ## List themes
 
-**URL**: `/api/levels/`
+**URL**: `/api/themes/`
 
 **METHOD**: `GET`
 
