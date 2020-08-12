@@ -100,7 +100,7 @@ All requests should have 'Secret' header that equals to API_SECRET, otherwise yo
 
 ## Retrieve theme
 
-**URL**: `api/themes/:pk/`
+**URL**: `/api/themes/:pk/`
 
 **URL Parameters**: `pk=[integer]` where `pk` is the ID of the Theme on the server.
 
@@ -125,7 +125,7 @@ All requests should have 'Secret' header that equals to API_SECRET, otherwise yo
 
 ## Retrieve word
 
-**URL**: `api/words/:pk/`
+**URL**: `/api/words/:pk/`
 
 **URL Parameters**: `pk=[integer]` where `pk` is the ID of the Word on the server.
 
