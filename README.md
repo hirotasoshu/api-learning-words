@@ -127,7 +127,7 @@ All requests should have 'Secret' header that equals to API_SECRET, otherwise yo
 
 **URL**: `api/words/:pk/`
 
-**URL Parameters**: `pk=[integer]` where `pk` is the ID of the Theme on the server.
+**URL Parameters**: `pk=[integer]` where `pk` is the ID of the Word on the server.
 
 **METHOD**: `GET`
 
